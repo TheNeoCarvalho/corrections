@@ -1,0 +1,32 @@
+import cv2
+from scanner.camera import Camera
+from scanner.qr_detector import QRDetector
+from core.respostas import Respostas
+from core.storage import salvar
+
+camera = Camera()
+detector = QRDetector()
+respostas = Respostas()
+
+print("Scanner ativo | Q para sair")
+
+while True:
+    ret, frame = camera.read()
+    if not ret:
+        break
+
+    deteccoes = detector.detectar(frame)
+
+    for aluno, alternativa in deteccoes:
+        registrado = respostas.registrar(aluno, alternativa)
+        if registrado:
+            salvar(respostas.to_dict())
+            print(f"{aluno} votou em {alternativa}")
+
+    cv2.imshow("Scanner QR", frame)
+
+    if cv2.waitKey(1) & 0xFF == ord("q"):
+        break
+
+camera.release()
+cv2.destroyAllWindows()
