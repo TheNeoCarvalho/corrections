@@ -5,4 +5,3 @@ if __name__ == "__main__":
 
     gerador = GeradorQRCodes()
     gerador.gerar_para_alunos(alunos)
-q

@@ -9,23 +9,7 @@ class Detector:
             "C": ([40, 70, 70], [80, 255, 255]), 
             "D": ([20, 100, 100], [30, 255, 255]), 
         }
-
         self.threshold_area = 2000
-
-#     def detectar(self, frame):
-#         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-#         detectadas = []
-
-#         for opcao, (lower, upper) in self.cores.items():
-#             mask = cv2.inRange(
-#                 hsv,
-#                 np.array(lower),
-#                 np.array(upper)
-#             )
-#             area = cv2.countNonZero(mask)
-
-#             if area > self.threshold_area:
-#                 detectadas.append(opcao)
 
     def Detectar(self, frame):
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -39,11 +23,11 @@ class Detector:
             )
 
             area = cv2.countNonZero(mask)
-
-            # DEBUG VISUAL
             cv2.imshow(f"Mask {opcao}", mask)
 
             if area > self.threshold_area:
                 detectadas.append(opcao)
 
         return detectadas
+
+    print(pyzbar.decode(frame))

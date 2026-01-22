@@ -1,13 +1,29 @@
-import streamlit as st
+# class UI:
+#     def atualizar(self, respostas_por_aluno, totais):
+#         print("\nRespostas por aluno:")
+#         for aluno, resp in respostas_por_aluno.items():
+#             print(f"{aluno}: {resp}")
+
+#         print("\nTotais:")
+#         for alt, qtd in totais.items():
+#             print(f"{alt}: {qtd}")
+
+
+import os
+import time
 
 class UI:
-    def __init__(self):
-        st.set_page_config(page_title="Votação em Tempo Real")
-        st.title("📊 Votação dos Alunos")
+    def atualizar(self, respostas_por_aluno, totais):
+        os.system("cls" if os.name == "nt" else "clear")
 
-    def atualizar(self, votos, percentuais):
-        st.subheader("Votos")
-        st.bar_chart(votos)
+        print("=== RESULTADOS EM TEMPO REAL ===\n")
 
-        st.subheader("Percentuais")
-        st.write(percentuais)
+        print("Respostas por aluno:")
+        for aluno, resp in respostas_por_aluno.items():
+            print(f"{aluno}: {resp}")
+
+        print("\nTotais:")
+        for alt, qtd in totais.items():
+            print(f"{alt}: {qtd}")
+
+        time.sleep(0.2)
